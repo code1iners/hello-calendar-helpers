@@ -1,34 +1,65 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import { makeCalendar } from "@ce1pers/date-helpers";
+import { clazz } from "@ce1pers/use-class";
+import { CalendarDateItem } from "@ce1pers/date-helpers/src/calendar-helpers/types";
+
+const months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [calendar, setCalendar] = useState<CalendarDateItem[]>([]);
+  const [date, setDate] = useState<number>();
+  const [month, setMonth] = useState<number>();
+
+  useEffect(() => {
+    const now = new Date();
+    setCalendar(makeCalendar(now.getFullYear(), month));
+
+    setDate(undefined);
+  }, [month]);
+
+  const onDateClick = (date: CalendarDateItem) => {
+    setDate(date.date);
+  };
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+    <main className="h-screen flex flex-col gap-5 justify-center items-center">
+      <article className="flex items-center justify-center gap-1 tracking-wider text-lg">
+        <span>{month ?? "?"}월</span>
+        <span>{date ?? "?"}일</span>
+      </article>
+
+      <article>
+        <ul className="grid grid-cols-6 gap-3">
+          {months.map((month) => (
+            <li
+              key={month}
+              className="text-center cursor-pointer"
+              onClick={() => setMonth(month)}
+            >
+              {month}월
+            </li>
+          ))}
+        </ul>
+      </article>
+
+      <article className="flex flex-col gap-5">
+        <ul className="grid grid-cols-7 gap-5">
+          {calendar.map((date) => (
+            <li
+              className={clazz(
+                "cursor-pointer",
+                date.month !== month ? "text-gray-500" : ""
+              )}
+              key={date.key}
+              onClick={() => onDateClick(date)}
+            >
+              {date.date}
+            </li>
+          ))}
+        </ul>
+      </article>
+    </main>
+  );
 }
 
-export default App
+export default App;

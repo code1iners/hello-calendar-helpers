@@ -2,6 +2,8 @@
 
 This is a simple wep application for calendar helpers test.
 
-### [Github](https://github.com/code1iners/ce1pers)
+## Links
 
-### [Npm](https://www.npmjs.com/package/@ce1pers/date-helpers)
+- [Sample Web Application](https://hello-calendars.netlify.app/)
+- [Github](https://github.com/code1iners/hello-calendar-helpers)
+- [Npm](https://www.npmjs.com/package/@ce1pers/date-helpers)

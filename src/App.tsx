@@ -31,11 +31,12 @@ function App() {
     const now = new Date();
     setCalendar(makeCalendar(now.getFullYear(), month));
 
-    setDate(undefined);
+    setDate((prev) => prev ?? undefined);
   }, [month]);
 
   const onDateClick = (date: CalendarDateItem) => {
     setDate(date.date);
+    setMonth(date.month);
   };
 
   return (

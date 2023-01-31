@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@ce1pers/date-helpers": "^1.1.9",
+    "@ce1pers/date-helpers": "^1.1.10",
     "@ce1pers/use-class": "^1.0.12",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"

@@ -29,7 +29,8 @@ function App() {
 
   useEffect(() => {
     const now = new Date();
-    setCalendar(makeCalendar(now.getFullYear(), month));
+
+    if (month) setCalendar(makeCalendar(now.getFullYear(), month));
 
     setDate((prev) => prev ?? undefined);
   }, [month]);

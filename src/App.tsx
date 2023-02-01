@@ -58,14 +58,19 @@ function App() {
       </article>
 
       <article>
-        <ul className="grid grid-cols-6 gap-3">
-          {months.map((month) => (
+        <ul className="grid grid-cols-6 gap-3 text-gray-500">
+          {months.map((eachMonth) => (
             <li
-              key={month}
-              className="text-center cursor-pointer"
-              onClick={() => setMonth(month)}
+              key={eachMonth}
+              className={clazz(
+                "text-center cursor-pointer",
+                month === eachMonth
+                  ? "text-violet-500 underline underline-offset-4"
+                  : ""
+              )}
+              onClick={() => setMonth(eachMonth)}
             >
-              {month}월
+              {eachMonth}월
             </li>
           ))}
         </ul>
@@ -73,16 +78,19 @@ function App() {
 
       <article className="flex flex-col gap-5">
         <ul className="grid grid-cols-7 gap-5">
-          {calendar.map((date) => (
+          {calendar.map((eachDate) => (
             <li
               className={clazz(
-                "cursor-pointer text-center",
-                date.month !== month ? "text-gray-500" : ""
+                "p-1 cursor-pointer text-center",
+                eachDate.month !== month ? "text-gray-500" : "",
+                eachDate.month === month && eachDate.date === date
+                  ? "text-violet-500 underline underline-offset-4"
+                  : ""
               )}
-              key={date.key}
-              onClick={() => onDateClick(date)}
+              key={eachDate.key}
+              onClick={() => onDateClick(eachDate)}
             >
-              {date.date}
+              {eachDate.date}
             </li>
           ))}
         </ul>

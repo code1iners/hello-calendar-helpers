@@ -81,7 +81,7 @@ function App() {
           {calendar.map((eachDate) => (
             <li
               className={clazz(
-                "p-1 cursor-pointer text-center",
+                "cursor-pointer text-center",
                 eachDate.month !== month ? "text-gray-500" : "",
                 eachDate.month === month && eachDate.date === date
                   ? "text-violet-500 underline underline-offset-4"
